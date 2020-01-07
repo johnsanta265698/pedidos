@@ -6,7 +6,7 @@ interface Clientes {
   edad: number
 }
 
-interface Productos{
+interface Productos {
   nombre: string
   precio: number
 }
@@ -17,32 +17,78 @@ interface Productos{
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit {
-  clientes: Array<Clientes> = new Array<Clientes>()
-  productos: Array<Productos> = new Array<Productos>()
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
   guardarCliente() {
-    localStorage.setItem('clientes', JSON.stringify(this.clientes))
+    let clientesAgregar: Array<Clientes> = new Array<Clientes>()
+    clientesAgregar.push(
+      {
+        nombre: 'John',
+        apellido: 'Santa',
+        edad: 23
+      },
+      {
+        nombre: 'Maicol',
+        apellido: 'Santa',
+        edad: 16
+      },
+      {
+        nombre: 'Nohelia',
+        apellido: 'Otalvaro',
+        edad: 50
+      },
+    )
+    localStorage.setItem('clientes', JSON.stringify(clientesAgregar))
   }
 
   guardarProductos() {
-    localStorage.setItem('productos', JSON.stringify(this.productos))
+    let productosAgregar: Array<Productos> = new Array<Productos>()
+    productosAgregar.push(
+      {
+        nombre: 'Club Colombia',
+        precio: 3500
+      },
+      {
+        nombre: 'Pilsen',
+        precio: 2500
+      },
+      {
+        nombre: 'Aguila',
+        precio: 1100
+      }
+    )
+
+    localStorage.setItem('productos', JSON.stringify(productosAgregar))
   }
 
-  eliminarTodo(){
+  eliminarTodo() {
     localStorage.clear()
   }
 
-  leer(){
-    this.clientes = JSON.parse(localStorage.getItem('clientes'))
-    this.productos = JSON.parse(localStorage.getItem('productos'))
+  eliminarPorTipo(tipo: string) {
+    localStorage.removeItem(tipo)
   }
 
-  eliminarPorTipo(tipo: string){
-    localStorage.removeItem(tipo)
+  get clientesLocales(): Clientes[] {
+    let clientesLocalStorage: Clientes[] = JSON.parse(localStorage.getItem('clientes'))
+    if (clientesLocalStorage == null) {
+      return new Array<Clientes>()
+    } else {
+      return clientesLocalStorage
+    }
+  }
+
+  get productosLocales(): Productos[]{
+    let productosLocalStorage: Productos[] = JSON.parse(localStorage.getItem('productos'))
+    if (productosLocalStorage == null) {
+      return new Array<Productos>()
+    } else {
+      return productosLocalStorage
+    }
   }
 }
