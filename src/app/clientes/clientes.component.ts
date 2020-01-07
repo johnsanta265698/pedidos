@@ -6,6 +6,11 @@ interface Clientes {
   edad: number
 }
 
+interface Productos{
+  nombre: string
+  precio: number
+}
+
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -13,33 +18,31 @@ interface Clientes {
 })
 export class ClientesComponent implements OnInit {
   clientes: Array<Clientes> = new Array<Clientes>()
+  productos: Array<Productos> = new Array<Productos>()
 
   constructor() { }
 
   ngOnInit() {
-    // this.clientes.push(
-    //   {
-    //     nombre: 'John',
-    //     apellido: 'Santa',
-    //     edad: 23
-    //   },
-    //   {
-    //     nombre: 'Maicol',
-    //     apellido: 'Santa',
-    //     edad: 16
-    //   }
-    // )
   }
 
   guardarCliente() {
     localStorage.setItem('clientes', JSON.stringify(this.clientes))
   }
 
+  guardarProductos() {
+    localStorage.setItem('productos', JSON.stringify(this.productos))
+  }
+
   eliminarTodo(){
     localStorage.clear()
   }
 
-  leerCliente(){
+  leer(){
     this.clientes = JSON.parse(localStorage.getItem('clientes'))
+    this.productos = JSON.parse(localStorage.getItem('productos'))
+  }
+
+  eliminarPorTipo(tipo: string){
+    localStorage.removeItem(tipo)
   }
 }

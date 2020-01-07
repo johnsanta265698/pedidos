@@ -1,14 +1,24 @@
 <div class="container">
-    <button class="btn btn-primary margen" (click)="guardarCliente()">Guardar</button>
-
-    <button class="btn btn-primary margen" (click)="leerCliente()">Leer</button>
-
-    <button class="btn btn-primary" (click)="eliminarTodo()">Borrar</button>
+    <div class="btn-group">
+        <button class="btn btn-primary" (click)="guardarCliente()">Guardar</button>
+        <button class="btn btn-primary" (click)="guardarProductos()">Guardar P</button>
+        <button class="btn btn-primary" (click)="leer()">Leer</button>
+        <button class="btn btn-danger" (click)="eliminarTodo()">Borrar</button>
+        <button class="btn btn-danger" (click)="eliminarPorTipo('productos')">Borrar Productos</button>
+        <button class="btn btn-danger" (click)="eliminarPorTipo('clientes')">Borrar Cliente</button>
+    </div>
 </div>
 
 <div class="container">
     <div *ngFor="let cliente of clientes">
         <p>Cliente: {{ cliente.nombre }} </p>
         <p>Edad: {{ cliente.edad }} </p>
+    </div>
+</div>
+
+<div class="container">
+    <div *ngFor="let producto of productos">
+        <p>Producto: {{ producto.nombre }} </p>
+        <p>Precio: {{ producto.precio | currency: 'Cop $' }} </p>
     </div>
 </div>
