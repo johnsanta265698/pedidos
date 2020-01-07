@@ -10,6 +10,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { HomeComponent } from './home/home.component';
 import { AgregarClientesComponent } from './agregar-clientes/agregar-clientes.component';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,9 @@ import { AgregarClientesComponent } from './agregar-clientes/agregar-clientes.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
