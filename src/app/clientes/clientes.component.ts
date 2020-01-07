@@ -17,18 +17,18 @@ export class ClientesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.clientes.push(
-      {
-        nombre: 'John',
-        apellido: 'Santa',
-        edad: 23
-      },
-      {
-        nombre: 'Maicol',
-        apellido: 'Santa',
-        edad: 16
-      }
-    )
+    // this.clientes.push(
+    //   {
+    //     nombre: 'John',
+    //     apellido: 'Santa',
+    //     edad: 23
+    //   },
+    //   {
+    //     nombre: 'Maicol',
+    //     apellido: 'Santa',
+    //     edad: 16
+    //   }
+    // )
   }
 
   guardarCliente() {
@@ -37,5 +37,9 @@ export class ClientesComponent implements OnInit {
 
   eliminarTodo(){
     localStorage.clear()
+  }
+
+  leerCliente(){
+    this.clientes = JSON.parse(localStorage.getItem('clientes'))
   }
 }
